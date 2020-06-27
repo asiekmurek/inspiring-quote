@@ -10,7 +10,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
     uri: URL
-  })
+  }),
+queryDeduplication: false
 
 });
 
