@@ -6,7 +6,7 @@ export default function App() {
     <div className="App">
       <h1>Inspiring Quote</h1>
       <RandomQuote />
-  </div>
+    </div>
   );
 }
 
@@ -19,29 +19,37 @@ query getRandomQuote {
 }
 `;
 
-function RandomQuote(){
-  const { data, loading, error } = useQuery(RANDOM_QUOTE_QUERY, {
+function RandomQuote() {
+  const { data, loading, error, refetch } = useQuery(RANDOM_QUOTE_QUERY, {
     onError: (error) => {
       console.log("error", error)
       window.lastError = error;
     },
     fetchPolicy: "all"
   });
-  if(loading) {
+  if (loading) {
     return "Quote is loading";
   }
-  if(error) {
+  if (error) {
     return "sorry we've got a problem";
   }
   const { text, author } = data.randomQuote;
 
-  return <Quote text={text} author={author} />;
+  return (
+    <>
+      <Quote text={text} author={author} />
+      <button 
+      onClick={()=>{
+        refetch()
+      }}>get new quote</button>
+    </>
+  );
 }
 
 function Quote({ text, author }) {
   return (
     <blockquote>
-        {text}
+      {text}
       <footer>{author}</footer>
     </blockquote>
   );
