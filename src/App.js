@@ -20,9 +20,18 @@ query getRandomQuote {
 `;
 
 function RandomQuote(){
-  const { data, loading } = useQuery(RANDOM_QUOTE_QUERY);
+  const { data, loading, error } = useQuery(RANDOM_QUOTE_QUERY, {
+    onError: (error) => {
+      console.log("error", error)
+      window.lastError = error;
+    },
+    fetchPolicy: "all"
+  });
   if(loading) {
     return "Quote is loading";
+  }
+  if(error) {
+    return "sorry we've got a problem";
   }
   const { text, author } = data.randomQuote;
 
