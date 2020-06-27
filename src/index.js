@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-import App from './App';
+import App from './components/App';
 import { ApolloClient, InMemoryCache, HttpLink, ApolloProvider } from "@apollo/client"
 
 const URL = "https://agile-cliffs-85240.herokuapp.com/";
@@ -11,7 +11,7 @@ const client = new ApolloClient({
   link: new HttpLink({
     uri: URL
   }),
-queryDeduplication: false
+  queryDeduplication: false
 
 });
 
