@@ -1,0 +1,28 @@
+.App {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+blockquote {
+  margin: 5px;
+  border-left: 5px solid grey;
+  padding: 10px;
+  font-family: serif;
+  font-style: italic;
+  font-size: 14pt;
+}
+
+blockquote footer {
+  font-family: sans-serif;
+  font-style: normal;
+  font-size: 10pt;
+  margin: 2px;
+  font-weight: 700;
+  color: grey;
+}
+
+blockquote footer:before {
+  content: "\2015";
+}
